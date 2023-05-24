@@ -1,0 +1,9 @@
+Realizado por: Miguel Gonzalez, Fabio Buitrago, Jose Rodriguez
+javeriana.edu.co 10.26.1.144
+ntp.ubuntu.com 185.125.190.57
+instagram.com 157.240.6.174
+pontijaveriana.com.co 192.168.11.2
+pepsi.com 45.60.75.51
+lego.com 2.19.172.8
+youtube.com 172.217.173.46
+Comunicaciones y Redes
