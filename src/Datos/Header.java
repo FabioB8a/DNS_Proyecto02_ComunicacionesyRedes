@@ -1,7 +1,25 @@
 package Datos;
 
 public class Header {
-
+    /**
+    * 
+    *                                       1  1  1  1  1  1
+    *		  0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                      ID                       |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|QR|   Opcode  |AA|TC|RD|RA|   Z    |   RCODE   |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                    QDCOUNT                    |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                    ANCOUNT                    |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                    NSCOUNT                    |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                    ARCOUNT                    |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *
+    */
     private short ID;
     private Flag flag;
     private short QDCOUNT;
@@ -21,6 +39,14 @@ public class Header {
     public Flag getFlag() {
         return flag;
     }
+    /**
+     * 
+     * @param flag
+     * Descripción: onfigurar los valores de las diferentes banderas (flags) 
+     * en un campo de 16 bits representado por el parámetro flag.
+     * Se utilizan operaciones de desplazamiento y máscaras para extraer los 
+     * valores de las banderas individuales a partir del campo flag.
+     */
     public void setFlag(short flag) {
         Flag flagAuc=new Flag();
         flagAuc.setQR(((flag>>15)&1)==1);

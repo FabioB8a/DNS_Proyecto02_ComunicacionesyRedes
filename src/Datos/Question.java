@@ -1,6 +1,23 @@
 package Datos;
 
 public class Question {
+
+    /**
+    * 
+    *                                       1  1  1  1  1  1
+    *		  0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                                               |
+    *		/                     QNAME                     /
+    *		/                                               /
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                     QTYPE                     |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                     QCLASS                    |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *
+	*/
+
     private String QNAME;
     private short QTYPE;
     private short QCLASS;
@@ -29,7 +46,7 @@ public class Question {
 
     @Override
     public String toString() {
-        return "\nInformación Header:\n ->QNAME es: " + QNAME + 
+        return "\nInformación Question:\n ->QNAME es: " + QNAME + 
                                     "\n ->QTYPE es: " + Integer.toBinaryString(QTYPE) +  
                                     "\n ->QCLASS es: " + Integer.toBinaryString(QCLASS) +"\n";
     }   

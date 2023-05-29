@@ -1,7 +1,25 @@
 package Datos;
 
 public class Flag {
-    
+    /**
+    * 
+    *                                       1  1  1  1  1  1
+    *		  0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                      ID                       |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    * Flag->|QR|   Opcode  |AA|TC|RD|RA|   Z    |   RCODE   |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                    QDCOUNT                    |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                    ANCOUNT                    |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                    NSCOUNT                    |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *		|                    ARCOUNT                    |
+    *		+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+    *
+    */
     private boolean QR;
     private byte Opcode;
     private boolean AA;
@@ -61,7 +79,42 @@ public class Flag {
         RCODE = rCODE;
     }
 
-    public short AnswertoShort() {
+    /**
+     * 
+     * @return
+     * Descripción: Genera el valor numérico del campo de respuesta DNS utilizando las 
+     * propiedades de la instancia actual, asignando los bits correspondientes a las 
+     * diferentes banderas según su estado.
+     */
+    public short generarValorRespuesta() {
+        /**
+         * 1. Se inicializa la variable result como 0, que es el valor inicial del campo de respuesta.
+         * 
+         * 2. Se utiliza la operación OR binaria y desplazamientos a la izquierda para asignar los valores 
+         * de las diferentes banderas al campo result, de acuerdo con las propiedades de la instancia actual.
+         * 
+         * 3. Si la bandera QR es falsa (indicando que no es una respuesta), se establece el bit más 
+         * significativo (MSB) del campo result utilizando result |= 1 << 15.
+         * 
+         * 4. Se asigna el valor del opcode mediante el operador OR binario y un desplazamiento de bits a 
+         * la izquierda: result |= (getOpcode() & 0xF) << 11.
+         *
+         * 5. Se verifica cada una de las banderas (AA, TC, RD, RA) y, si son verdaderas, se establece el 
+         * bit correspondiente en el campo result utilizando el operador OR binario y un desplazamiento de 
+         * bits a la izquierda.
+         * 
+         * 6. Si la bandera RA es falsa (indicando que no se admite la recursión), se establece el bit 
+         * correspondiente en el campo result utilizando el operador OR binario y un desplazamiento de bits 
+         * a la izquierda.
+         * 
+         * 7. Se asigna el valor del campo Z mediante el operador OR binario y un desplazamiento de bits a 
+         * la izquierda: result |= (getZ() & 0x7) << 4.
+         * 
+         * 8. Se asigna el valor del campo RCODE mediante el operador OR binario: result |= getRCODE() & 
+         * 0xF.
+         * 
+         * 9. Finalmente, se devuelve el valor resultante del campo de respuesta.
+         */
         short result = 0;
 
         if (!isQR()) {
