@@ -92,7 +92,7 @@ public class LogicaServidor {
 		 * UDP se emplea en la mayoría de las consultas DNS debido a su eficiencia y baja 
 		 * latencia, aunque tiene una restricción de tamaño de paquete de 512 bytes
 		 */
-		byte bufferRecepcion[]= new byte[512];
+		byte bufferRecepcion[]= new byte[6000];
 		//byte bufferRecepcion[]= new byte[1024];
 		
 	    try {
